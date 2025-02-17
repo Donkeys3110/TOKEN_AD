@@ -84,4 +84,5 @@ body {
   box-shadow: 0 0.5vh 0.7vh #000000c5;
   font-family: 'Rahere Sans', sans-serif;
   text-shadow: 0 0.2vh 0.25vh #0000007a;
+  text-decoration: none;
 }
