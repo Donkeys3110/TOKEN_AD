@@ -5,9 +5,11 @@ body {
     background: linear-gradient(to bottom, #0e0d35, #0098ea);
     font-family: 'Rahere Sans', sans-serif;
     align-items: center;
-    overflow: hidden;
-    touch-action: manipulation;
-}
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+  }
+  
 
 .container {
     position: relative;
@@ -18,36 +20,43 @@ body {
     column-gap: 6vh;
     bottom: -10vh;
 }
-.containerpr {
-    position: relative;
-    justify-content: center;
-    display: grid;
-    top: -55vh;
-    left: 6vh;
-    grid-template-columns: repeat(1, 16vh);
-    row-gap: 14vh;
-    column-gap: 6vh;
-    bottom: -10vh;
-}
+
 .anns {
     position: relative;
     background: #2c3e50;
-    padding-top: 8vh;
-    padding-bottom: 21vh;
-    padding-left: 8vh;
-    padding-right: 8vh;
     border-radius: 3vh;
     background: #d9d9d93b;
     box-shadow: 0 0.5vh 0.2vh #00000038;
-    width: 24vh;
+    width: 40vh;
+    height: 30vh;
 }
 
 .block{
     position: relative;
-    background: #d9d9d9a4;
-    padding-top: 10vh;
+    background: #d9d9d9;
     border-radius: 2vh;
     width: 20vh;
-    height: 14vh;
+    height: 28vh;
+    left: 19vh;
+    top: 1vh;
+    box-shadow: 0 0.5vh 0.2vh #00000038;
+}
+.block1{
+    position: relative;
+    background: #d9d9d9;
+    border-radius: 2vh;
+    width: 17vh;
+    height: 5vh;
+    right: 18vh;
+    top: 23vh;
+    box-shadow: 0 0.5vh 0.2vh #00000038;
+}
+.block2{
+    position: relative;
+    background: #d9d9d9;
+    border-radius: 2vh;
+    width: 17vh;
+    height: 5vh;
+    bottom: 6vh;
     box-shadow: 0 0.5vh 0.2vh #00000038;
 }
