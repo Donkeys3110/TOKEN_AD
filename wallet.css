@@ -11,18 +11,17 @@ body {
 }
 .container {
     position: relative;
-    justify-content: center;
-    justify-items: center;
+    place-items: center;
     display: grid;
-    grid-template-columns: repeat(1, center);
+    grid-template-columns: repeat(1);
     row-gap: 9vh;
     column-gap: 6vh;
     bottom: -10vh;
 }
 .containerpr {
     position: relative;
-    justify-content: center;
-    justify-items: center;
+    place-items: center;
+    place-content: center;
     display: grid;
     grid-template-columns: repeat(2, 20vh);
     bottom: -9vh;
@@ -30,8 +29,8 @@ body {
 
 .containerpr2 {
     position: relative;
-    justify-content: center;
-    justify-items: center;
+    place-content: center;
+    place-items: center;
     display: grid;
     grid-template-columns: repeat(1, 20vh);
     row-gap: 3vh;
@@ -40,8 +39,8 @@ body {
 
 .textcont {
     position: relative;
-    justify-content: center;
-    justify-items: center;
+    place-content: center;
+    place-items: center;
     display: grid;
     grid-template-columns: repeat(1, 20vh);
     row-gap: 10vh;
@@ -49,7 +48,7 @@ body {
 }
 .idmain {
     position: relative;
-    justify-items: center;
+    place-items: center;
     background-color: #d9d9d93b;
     border-radius: 0.4vh;
     width: 10vh;
@@ -60,8 +59,8 @@ body {
 }
 
 .idin {
-    text-align: center;
     position: relative;
+    text-align: center;
     background-color: #d9d9d962;
     border-radius: 0.4vh;
     font-size: 1vh;
@@ -81,7 +80,7 @@ body {
 
 .senddep {
     position: relative;
-    justify-items: center;
+    place-items: center;
     background-color: #d9d9d93b;
     box-shadow: 0 0.5vh 0.2vh #00000038;
     border-radius: 2vh;
@@ -92,7 +91,7 @@ body {
 
 .senddepin {
     position: relative;
-    justify-items: center;
+    place-items: center;
     background-color: #d9d9d93b;
     box-shadow: 0 0.5vh 0.2vh #00000038;
     border-radius: 2vh;
@@ -102,11 +101,11 @@ body {
 }
 
 .senddepintext {
+    position: relative;
     text-align: center;
     font-size: 2vh;
     font-weight: 700;
     color: #ffffffbe;
-    position: relative;
     background-color: #d9d9d93b;
     box-shadow: 0 0.5vh 0.2vh #00000038;
     border-radius: 2vh;
