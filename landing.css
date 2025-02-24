@@ -18,49 +18,31 @@ body {
   opacity: 0.9;
 }
 
-.d {
-  font-size: 25vh;
-  font-weight: 800;
-  text-shadow: -1.1vh 1.8vh 0 #000000;
-  transform: rotate(-32.9deg);
-  position: absolute;
-  top: -9vh;
-  left: 37.2vw;
-}
 
-.a {
-  font-size: 34vh;
-  font-weight: 800;
-  text-shadow: -2vh 1.1vh 0 #000000;
-  transform: rotate(-66.3deg);
-  position: absolute;
-  left: 20%;
-  right: 34%;
-  top: 8vh;
-}
 
-.content {
-  position: relative;
-  margin-top: 50vh;
-  letter-spacing: 0.4vw;
-}
-
+/* Анимация для текста "Tonken Ad" */
 .tonken-ad {
   position: relative;
   justify-content: center;
   font-size: 5vh;
   font-weight: 700;
   text-shadow: 0 0.4vh 0.25vh #0000007a;
-  }
+  animation-delay: 0.6s; /* Задержка для текста */
+  top: 25vh;
+}
 
+/* Анимация для текста "Made to improve" */
 .made-to-improve {
   position: relative;
   font-size: 2.2vh;
   font-weight: 500;
   justify-content: center;
   text-shadow: 0 0.4vh 0.25vh #0000007a;
-  }
+  animation-delay: 0.8s; /* Задержка для текста */
+  top: 25vh;
+}
 
+/* Анимация для текста "Your Token" */
 .your-token {
   position: relative;
   font-size: 4.7vh;
@@ -69,10 +51,13 @@ body {
   align-items: center;
   justify-content: center;
   text-shadow: 0 0.4vh 0.25vh #0000007a;
+  animation-delay: 1s; /* Задержка для текста */
+  top: 24vh;
 }
 
+/* Анимация для кнопки "Start" */
 .start {
-  display: inline-block;
+  position: relative;
   background-color: #51b0e5;
   color: white;
   font-size: 6vh;
@@ -85,4 +70,57 @@ body {
   font-family: 'Rahere Sans', sans-serif;
   text-shadow: 0 0.2vh 0.25vh #0000007a;
   text-decoration: none;
+  animation-delay: 1.2s; /* Задержка для кнопки */
+  top: 29vh;
+}
+
+/* Общая анимация с учетом исходных трансформаций */
+@keyframes fallFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-100vh) rotate(0deg); /* Стартовая позиция */
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(10vh) rotate(0deg); /* Эффект отскока */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) var(--final-transform); /* Фикс для исходного rotate */
+  }
+}
+
+/* Буква Д */
+.d {
+  font-size: 25vh;
+  font-weight: 800;
+  text-shadow: -1.1vh 1.8vh 0 #000000;
+  --final-transform: rotate(-32.9deg); /* Фиксируем исходный rotate */
+  transform: var(--final-transform);
+  position: absolute;
+  bottom: 26vh;
+  left: 37.2vw;
+  animation: fallFromTop 1.5s ease-out forwards;
+}
+
+/* Буква А */
+.a {
+  font-size: 34vh;
+  font-weight: 800;
+  text-shadow: -2vh 1.1vh 0 #000000;
+  --final-transform: rotate(-66.3deg); /* Фиксируем исходный rotate */
+  transform: var(--final-transform);
+  position: absolute;
+  left: 20%;
+  right: 34%;
+  bottom: -5vh;
+  animation: fallFromTop 1.5s ease-out forwards;
+}
+
+/* Остальные элементы */
+.tonken-ad, .made-to-improve, .your-token, .start {
+  opacity: 0;
+  --final-transform: rotate(0deg); /* Без вращения */
+  animation: fallFromTop 1.5s ease-out forwards;
+  animation-delay: 0.6s;
 }
