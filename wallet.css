@@ -48,14 +48,10 @@ body {
 }
 .idmain {
     position: relative;
-    place-items: center;
-    background-color: #d9d9d93b;
-    border-radius: 0.4vh;
-    width: 10vh;
-    height: 2vh;
-    box-shadow: 0 0.5vh 0.2vh #00000038;
+    justify-items: center;
+    width: 20vh;
+    height: 3.5vh;
     top: -9vh;
-
 }
 
 .idin {

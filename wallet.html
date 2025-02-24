@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crate Store</title>
     <link rel="stylesheet" href="wallet.css">
+    <script src="https://unpkg.com/@tonconnect/ui@1.0.0-beta.5/dist/tonconnect-ui.min.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="balance">$14889</div>
-        <div class="idmain"><div class="idin">UQDKA...ASel</div></div>
-    </div>
+            <div class="idmain" id="connect-button-root"></div>
+            <script>
+                const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+                    manifestUrl: 'https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json',
+                    buttonRootId: 'connect-button-root'
+                });
+        
+                tonConnectUI.onStatusChange(console.log);
+            </script>
+        </div>
     <div class="containerpr">
         <div class="senddep"><div class="senddepin"><div class="senddepintext">SEND</div></div></div>
         <div class="senddep"><div class="senddepin"><div class="senddepintext">DEPOSIT</div></div></div>
