@@ -5,7 +5,7 @@ from aiogram.types import Message
 import aiosqlite
 
 # Замените на токен вашего бота
-BOT_TOKEN = "2200289969:AAFZaYt9IiSeZnbuPwXU8fxK41k66nnIg0U"
+BOT_TOKEN = "8165957380:AAHRPOKYvcUD1KfBIaCOHbAt1GphjDB9PV4"
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
