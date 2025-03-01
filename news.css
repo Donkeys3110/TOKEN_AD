@@ -68,7 +68,6 @@ body {
     border-radius: 3vh;
     left: 50%;
     transform: translate(-50%);
-    justify-content: space-around;
     justify-items: center;
     background-color: #d9d9d93b;
     box-shadow: 0 0.5vh 0.2vh #00000038;   
@@ -96,4 +95,15 @@ body {
 /* Добавьте отступ для контента */
 body {
     padding-bottom: 10vh !important;
+}
+.nav-item.active {
+    border-radius: 3vh;
+    width: 19vh;
+    background-color: white;
+    color: #187BC6 !important;
+    font-weight: 800;
+}
+
+.nav-item.active .nav-icon {
+    color: #187BC6 !important;
 }

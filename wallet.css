@@ -49,9 +49,10 @@ body {
 .idmain {
     position: relative;
     justify-items: center;
-    width: 20vh;
-    height: 3.5vh;
-    top: -9vh;
+    width: 30vh;
+    height: 6.5vh;
+    top: -6.4vh;
+    box-shadow: 0 0.5vh 0.2vh #c0c0c02a;
 }
 
 .idin {
@@ -72,42 +73,6 @@ body {
     font-size: 5vh;
     font-weight: 1000;
     color: #ffffff;
-}
-
-.senddep {
-    position: relative;
-    place-items: center;
-    background-color: #d9d9d93b;
-    box-shadow: 0 0.5vh 0.2vh #00000038;
-    border-radius: 2vh;
-    width: 14vh;
-    height: 13vh;
-    top: -6vh;
-}
-
-.senddepin {
-    position: relative;
-    place-items: center;
-    background-color: #d9d9d93b;
-    box-shadow: 0 0.5vh 0.2vh #00000038;
-    border-radius: 2vh;
-    width: 9vh;
-    height: 7vh;
-    top: 1.2vh;
-}
-
-.senddepintext {
-    position: relative;
-    text-align: center;
-    font-size: 2vh;
-    font-weight: 700;
-    color: #ffffffbe;
-    background-color: #d9d9d93b;
-    box-shadow: 0 0.5vh 0.2vh #00000038;
-    border-radius: 2vh;
-    width: 10vh;
-    height: 3vh;
-    top: 8vh;
 }
 
 .tokens{
@@ -144,7 +109,6 @@ body {
     border-radius: 3vh;
     left: 50%;
     transform: translate(-50%);
-    justify-content: space-around;
     justify-items: center;
     background-color: #d9d9d93b;
     box-shadow: 0 0.5vh 0.2vh #00000038;   
@@ -172,4 +136,15 @@ body {
 /* Добавьте отступ для контента */
 body {
     padding-bottom: 10vh !important;
+}
+.nav-item.active {
+    border-radius: 3vh;
+    width: 27vh;
+    background-color: white;
+    color: #187BC6 !important;
+    font-weight: 800;
+}
+
+.nav-item.active .nav-icon {
+    color: #187BC6 !important;
 }
