@@ -67,7 +67,6 @@ body {
   text-shadow: 0 0.2vh 0.25vh #0000007a;
   text-decoration: none;
   bottom: 7vh;
-  padding-top: 0.6vh;
   left: 20%;
   right: 20%;
   text-align: center;
@@ -143,7 +142,7 @@ body {
   transform: var(--final-transform);
   position: fixed;
   top: 20vh;
-  left: 30%;
+  left: 10%;
   right: 30%;
   animation: fallFromTop1 1.5s ease-out forwards;
 }
