@@ -15,7 +15,6 @@ body {
   width: 100%;
   text-align: center;
   color: #fff;
-  opacity: 0.9;
 }
 
 
@@ -39,7 +38,7 @@ body {
   justify-content: center;
   text-shadow: 0 0.4vh 0.25vh #0000007a;
   animation-delay: 0.8s; /* Задержка для текста */
-  top: 25vh;
+  top: 24.5vh;
 }
 
 /* Анимация для текста "Your Token" */
@@ -57,70 +56,107 @@ body {
 
 /* Анимация для кнопки "Start" */
 .start {
-  position: relative;
+  position: fixed;
   background-color: #51b0e5;
   color: white;
-  font-size: 6vh;
-  font-weight: 700;
-  padding: 3.6% 23%;
-  border: none;
-  border-radius: 22px;
-  margin-top: 4vh;
+  font-size: 5vh;
+  font-weight: 800;
+  border-radius: 3vh;
   box-shadow: 0 0.5vh 0.7vh #000000c5;
   font-family: 'Rahere Sans', sans-serif;
   text-shadow: 0 0.2vh 0.25vh #0000007a;
   text-decoration: none;
-  animation-delay: 1.2s; /* Задержка для кнопки */
-  top: 29vh;
+  bottom: 7vh;
+  left: 20%;
+  right: 20%;
+  padding-bottom: 1vh;
+  text-align: center;
+  max-width: 70%;
+  width: 60%;
 }
 
 /* Общая анимация с учетом исходных трансформаций */
 @keyframes fallFromTop {
   0% {
     opacity: 0;
-    transform: translateY(-100vh) rotate(0deg); /* Стартовая позиция */
+    transform: translateY(-100vh) rotate(-32.9deg); /* Стартовая позиция */
   }
-  70% {
-    opacity: 1;
-    transform: translateY(10vh) rotate(0deg); /* Эффект отскока */
-  }
+
   100% {
     opacity: 1;
     transform: translateY(0) var(--final-transform); /* Фикс для исходного rotate */
   }
 }
 
+/* Общая анимация с учетом исходных трансформаций */
+@keyframes fallFromTop1 {
+  0% {
+    opacity: 0;
+    transform: translateY(-100vh) rotate(-66.3deg); /* Стартовая позиция */
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) var(--final-transform); /* Фикс для исходного rotate */
+  }
+}
+@keyframes fallFromToptext {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(0deg); /* Стартовая позиция */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) var(--final-transform); /* Фикс для исходного rotate */
+  }
+}
+@keyframes srart {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(0deg); /* Стартовая позиция */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) var(--final-transform); /* Фикс для исходного rotate */
+  }
+}
 /* Буква Д */
 .d {
-  font-size: 25vh;
+  font-size: 28vh;
   font-weight: 800;
   text-shadow: -1.1vh 1.8vh 0 #000000;
   --final-transform: rotate(-32.9deg); /* Фиксируем исходный rotate */
   transform: var(--final-transform);
-  position: absolute;
-  bottom: 26vh;
-  left: 37.2vw;
+  position: fixed;
+  top: 3vh;
+  left: 39%;
+  right: 39%;
   animation: fallFromTop 1.5s ease-out forwards;
 }
 
 /* Буква А */
 .a {
-  font-size: 34vh;
+  font-size: 39vh;
   font-weight: 800;
   text-shadow: -2vh 1.1vh 0 #000000;
   --final-transform: rotate(-66.3deg); /* Фиксируем исходный rotate */
   transform: var(--final-transform);
-  position: absolute;
-  left: 20%;
-  right: 34%;
-  bottom: -5vh;
-  animation: fallFromTop 1.5s ease-out forwards;
+  position: fixed;
+  top: 20vh;
+  left: 10%;
+  right: 30%;
+  animation: fallFromTop1 1.5s ease-out forwards;
 }
 
 /* Остальные элементы */
-.tonken-ad, .made-to-improve, .your-token, .start {
+.tonken-ad, .made-to-improve, .your-token {
+  opacity: 0;
+  animation: fallFromToptext 1.5s ease-out forwards;
+  animation-delay: 0s;
+}
+.start {
   opacity: 0;
   --final-transform: rotate(0deg); /* Без вращения */
-  animation: fallFromTop 1.5s ease-out forwards;
-  animation-delay: 0.6s;
+  animation: srart 1.5s ease-out forwards;
+  animation-delay: 0.4s;
 }
