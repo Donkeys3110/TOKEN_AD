@@ -51,8 +51,32 @@ body {
     justify-items: center;
     width: 30vh;
     height: 6.5vh;
-    top: -6.4vh;
-    box-shadow: 0 0.5vh 0.2vh #c0c0c02a;
+    bottom: 6vh;
+}
+
+[data-tc-connect-button="true"] {
+    width: 80vw !important;
+    height: 7vh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center;
+}
+
+[data-tc-text="true"] {
+    font-size: 2vh !important;
+    font-weight: 700 !important;
+}
+
+@media (max-width: 600px) {
+    [data-tc-connect-button="true"] {
+        width: 60vw !important;
+        max-width: none !important;
+    }
+}
+
+ton-connect-button::part(icon) {
+    display: none; /* Скрыть иконку, если она не нужна */
 }
 
 .idin {
@@ -70,8 +94,8 @@ body {
 .balance {
     position: relative;
     text-align: center;
-    font-size: 5vh;
-    font-weight: 1000;
+    font-size: 3.5vh;
+    font-weight: 800;
     color: #ffffff;
 }
 
@@ -130,8 +154,6 @@ body {
     font-size: 3vh;
     margin-bottom: 0.5vh;
 }
-
-
 
 /* Добавьте отступ для контента */
 body {

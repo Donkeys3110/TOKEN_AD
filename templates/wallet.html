@@ -4,22 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crate Store</title>
-    <link rel="stylesheet" href="wallet.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wallet.css') }}">
     <script src="https://unpkg.com/@tonconnect/ui@1.0.0-beta.5/dist/tonconnect-ui.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <div class="balance">$14889</div>
-            <div class="idmain" id="connect-button-root"></div>
-            <script>
-                const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-                    manifestUrl: 'https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json',
-                    buttonRootId: 'connect-button-root'
-                });
-        
-                tonConnectUI.onStatusChange(console.log);
-            </script>
-        </div>
+        <div class="balance">Загрузка баланса...</div>
+        <div class="idmain" id="connect-button-root"></div>
+    </div>
     <div class="containerpr2">
         <div class="tokens"><div class="tokensicon"></div></div>
         <div class="tokens"><div class="tokensicon"></div></div>
@@ -31,19 +23,19 @@
         <div class="texttoken">NAVI 228</div>
     </div>
     <div class="bottom-nav">
-        <a href="news.html" class="nav-item ">
+        <a href="{{url_for('news')}}" class="nav-item">
             <div class="nav-icon">📰</div>
             <span>NEWS</span>
         </a>
-        <a href="index.html" class="nav-item ">
+        <a href="{{url_for('main')}}" class="nav-item">
             <div class="nav-icon">🏠</div>
             <span>HOME</span>
         </a>
-        <a href="wallet.html" class="nav-item active">
+        <a href="{{url_for('wallet')}}" class="nav-item active">
             <div class="nav-icon">💰</div>
             <span>WALLET</span>
-
         </a>
     </div>
+    <script src="{{ url_for('static', filename='js/ton-connect.js') }}"></script>
 </body>
 </html>
