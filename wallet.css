@@ -101,24 +101,43 @@ body {
     font-size: 2.4vh;
 }
 .navbar {
-    background: #333;
-    padding: 20px;
+    border-radius: 4vh;
+    padding-top: 2vh;
+    text-align: center;
+    position: fixed;
+    width: 40vh;
+    height: 7vh; /* Увеличиваем высоту для стабильности */
+    bottom: 1vh;
+    background-color: #d9d9d93b;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex; /* Добавляем flex-контейнер */
+    justify-content: center; /* Центрируем элементы */
   }
   
   .nav-link {
     color: white;
     text-decoration: none;
-    margin: 0 15px;
-    position: relative;
+    margin: 0 20px; /* Уменьшаем боковые отступы */
+    padding: 1vh 1vh; /* Добавляем внутренние отступы */
     transition: all 0.8s;
-  }
-  /* Стиль активной ссылки */
-  .nav-link.active {
-    background-color: #ff0000;
-    color: #ffffff !important;
+    line-height: 1; /* Фиксируем высоту строки */
+    display: inline-block; /* Для корректной работы трансформаций */
+    min-width: 60px; /* Фиксированная минимальная ширина */
   }
   
-  /* Анимация при наведении */
-  .nav-link:hover::before {
-    width: 100%;
+  .nav-link.active {
+    margin-bottom: 10px;
+    font-weight: 800;
+    font-size: 3vh;
+    border-radius: 5vh;
+    background-color: #ffffff;
+    color: #187BC6 !important;
+    
+  }
+  
+  /* Добавляем псевдоэлемент для стабильности неактивных ссылок */
+  .nav-link:not(.active) {
+    transform: translateY(0.5vh); /* Компенсируем вертикальное смещение */
+    opacity: 0.9; /* Визуально отличаем неактивные элементы */
   }

@@ -61,42 +61,43 @@ body {
     box-shadow: 0 0.5vh 0.2vh #00000038;
 }
 .navbar {
-    position: relative;
-    top: 16vh;
-    background: #333;
-    padding: 20px;
+    border-radius: 4vh;
+    padding-top: 2vh;
+    text-align: center;
+    position: fixed;
+    width: 40vh;
+    height: 7vh; /* Увеличиваем высоту для стабильности */
+    bottom: 1vh;
+    background-color: #d9d9d93b;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex; /* Добавляем flex-контейнер */
+    justify-content: center; /* Центрируем элементы */
   }
   
   .nav-link {
     color: white;
     text-decoration: none;
-    margin: 0 15px;
-    position: relative;
-    transition: all 3s;
+    margin: 0 20px; /* Уменьшаем боковые отступы */
+    padding: 1vh 1vh; /* Добавляем внутренние отступы */
+    transition: all 0.8s;
+    line-height: 1; /* Фиксируем высоту строки */
+    display: inline-block; /* Для корректной работы трансформаций */
+    min-width: 60px; /* Фиксированная минимальная ширина */
   }
   
-  /* Анимация подчеркивания */
-  .nav-link::before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #ff0000;
-    transition: width 3s;
-  }
-  
-  /* Стиль активной ссылки */
   .nav-link.active {
-    color: #ff0000 !important;
+    margin-bottom: 10px;
+    font-weight: 800;
+    font-size: 3vh;
+    border-radius: 5vh;
+    background-color: #ffffff;
+    color: #187BC6 !important;
+    
   }
   
-  .nav-link.active::before {
-    width: 100%;
-  }
-  
-  /* Анимация при наведении */
-  .nav-link:hover::before {
-    width: 100%;
+  /* Добавляем псевдоэлемент для стабильности неактивных ссылок */
+  .nav-link:not(.active) {
+    transform: translateY(0.5vh); /* Компенсируем вертикальное смещение */
+    opacity: 0.9; /* Визуально отличаем неактивные элементы */
   }
