@@ -63,50 +63,19 @@ body {
     font-weight: 700;
     
 }
-.bottom-nav {
-    position: fixed;
-    display: flex;
-    bottom: 2vh;
-    width: 40vh;
-    border-radius: 3vh;
-    left: 50%;
-    transform: translate(-50%);
-    justify-items: center;
-    background-color: #d9d9d93b;
-    box-shadow: 0 0.5vh 0.2vh #00000038;   
-}
-
-.nav-item {
-    text-decoration: none;
+.navbar a {
     color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1vh 2vh;
-    border-radius: 1.5vh;
-    transition: all 0.3s ease;
-}
-
-
-.nav-icon {
-    font-size: 3vh;
-    margin-bottom: 0.5vh;
-}
-
-
-
-/* Добавьте отступ для контента */
-body {
-    padding-bottom: 10vh !important;
-}
-.nav-item.active {
-    border-radius: 3vh;
-    width: 27vh;
-    background-color: white;
-    color: #187BC6 !important;
-    font-weight: 800;
-}
-
-.nav-item.active .nav-icon {
-    color: #187BC6 !important;
-}
+    text-decoration: none;
+    position: relative;
+    margin-left: 20px;
+    padding: 8px 12px; /* Добавьте отступы для фона */
+    transition: all 0.8s; /* Плавные изменения для всех свойств */
+  }
+  
+  /* Стили ТОЛЬКО для активной ссылки */
+  .navbar a.active {
+    color: black !important;
+    background-color: #ffffff;
+    border-radius: 1vh;
+    z-index: 100;
+  }

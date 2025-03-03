@@ -60,50 +60,41 @@ body {
     bottom: 6vh;
     box-shadow: 0 0.5vh 0.2vh #00000038;
 }
-.bottom-nav {
-    position: fixed;
-    display: flex;
-    bottom: 2vh;
-    width: 40vh;
-    border-radius: 3vh;
-    left: 50%;
-    transform: translate(-50%);
-    justify-items: center;
-    background-color: #d9d9d93b;
-    box-shadow: 0 0.5vh 0.2vh #00000038;   
-}
-
-.nav-item {
+.navbar {
+    background: #333;
+    padding: 20px;
+  }
+  
+  .nav-link {
+    color: white;
     text-decoration: none;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1vh 2vh;
-    border-radius: 1.5vh;
-    transition: all 0.3s ease;
-}
-
-
-.nav-icon {
-    font-size: 3vh;
-    margin-bottom: 0.5vh;
-}
-
-
-
-/* Добавьте отступ для контента */
-body {
-    padding-bottom: 10vh !important;
-}
-.nav-item.active {
-    border-radius: 3vh;
-    width: 19vh;
-    background-color: white;
-    color: #187BC6 !important;
-    font-weight: 800;
-}
-
-.nav-item.active .nav-icon {
-    color: #187BC6 !important;
-}
+    margin: 0 15px;
+    position: relative;
+    transition: all 3s;
+  }
+  
+  /* Анимация подчеркивания */
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff0000;
+    transition: width 3s;
+  }
+  
+  /* Стиль активной ссылки */
+  .nav-link.active {
+    color: #ff0000 !important;
+  }
+  
+  .nav-link.active::before {
+    width: 100%;
+  }
+  
+  /* Анимация при наведении */
+  .nav-link:hover::before {
+    width: 100%;
+  }

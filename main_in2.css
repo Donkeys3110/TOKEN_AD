@@ -9,19 +9,22 @@ body {
     overflow-y: auto;
     
 }
+.dec{
+    position: relative;
+    background-color: #0098ea;
+    top: 90vh;
+
+}
 .navbar a {
     color: #ffffff;
     text-decoration: none;
     position: relative;
     margin-left: 20px;
-    padding: 8px 12px; /* Добавьте отступы для фона */
-    transition: all 0.8s; /* Плавные изменения для всех свойств */
-  }
-  
-  /* Стили ТОЛЬКО для активной ссылки */
-  .navbar a.active {
-    color: black !important;
+
+}
+.navbar a:active{
     background-color: #ffffff;
     border-radius: 1vh;
-    z-index: 100;
-  }
+    transition: 1s;
+    color: rgb(0, 4, 255);
+}
