@@ -63,19 +63,43 @@ body {
     font-weight: 700;
     
 }
-.navbar a {
-    color: #ffffff;
-    text-decoration: none;
+.navbar {
     position: relative;
-    margin-left: 20px;
-    padding: 8px 12px; /* Добавьте отступы для фона */
-    transition: all 0.8s; /* Плавные изменения для всех свойств */
+    bottom: 30vh;
+    background: #333;
+    padding: 20px;
   }
   
-  /* Стили ТОЛЬКО для активной ссылки */
-  .navbar a.active {
-    color: black !important;
-    background-color: #ffffff;
-    border-radius: 1vh;
-    z-index: 100;
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    position: relative;
+    transition: all 3s;
+  }
+  
+  /* Анимация подчеркивания */
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #ff0000;
+    transition: width 3s;
+  }
+  
+  /* Стиль активной ссылки */
+  .nav-link.active {
+    color: #ff0000 !important;
+  }
+  
+  .nav-link.active::before {
+    width: 100%;
+  }
+  
+  /* Анимация при наведении */
+  .nav-link:hover::before {
+    width: 100%;
   }
