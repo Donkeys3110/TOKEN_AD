@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Задержка 50 мс для корректного запуска анимации
         setTimeout(() => {
           link.classList.add('active');
-        }, 50);
+        }, 0);
       }
     });
   });

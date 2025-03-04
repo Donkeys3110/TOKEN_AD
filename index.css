@@ -88,16 +88,18 @@ body {
   line-height: 1.3; /* Фиксируем высоту строки */
   display: inline-block; /* Для корректной работы трансформаций */
   min-width: 60px; /* Фиксированная минимальная ширина */
+  border-radius: 10vh;
 }
 
 .nav-link.active {
-  line-height: 1; /* Фиксируем высоту строки */
-  transition: .5s;
-  margin-bottom: 10px;
+  position: relative;
+  margin: -1.8vh 0vh; /* Уменьшаем боковые отступы */
+  line-height: 1; /* Фиксиуем высоту строки */
+  transition: .3s ease-out;
   font-weight: 800;
   font-size: 3vh;
-  border-radius: 5vh;
-  height: 8vh;
+  border-radius: 4vh;
+  height: 7.7vh;
   background-color: #ffffff;
   color: #187BC6;
   
