@@ -10,6 +10,18 @@ tonConnectUI.onStatusChange(async (wallet) => {
         try {
             // Получаем баланс и адрес кошелька
             const balanceElement = document.querySelector('.balance');
+            const avatarElement = document.getElementById('user-avatar');
+            
+            // Получаем информацию о пользователе из Telegram
+            if (wallet.device.platform === 'telegram') {
+                const userInfo = wallet.device.appName; // Получаем информацию из кошелька
+                if (userInfo && userInfo.avatar) {
+                    avatarElement.style.backgroundImage = `url(${userInfo.avatar})`;
+                    avatarElement.style.display = 'block';
+                }
+            }
+
+            // Остальной код получения баланса
             const response = await fetch(`https://toncenter.com/api/v2/getAddressBalance?address=${wallet.account.address}`);
             const data = await response.json();
             
@@ -29,10 +41,11 @@ tonConnectUI.onStatusChange(async (wallet) => {
                 })
             });
         } catch (error) {
-            console.error('Ошибка при получении баланса:', error);
-            document.querySelector('.balance').textContent = 'Ошибка получения баланса';
+            console.error('Ошибка:', error);
+            document.querySelector('.balance').textContent = 'Ошибка получения данных';
         }
     } else {
         document.querySelector('.balance').textContent = 'Кошелёк не подключен';
+        document.getElementById('user-avatar').style.display = 'none';
     }
 });
