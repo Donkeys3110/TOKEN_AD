@@ -3,16 +3,12 @@ const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 const cookieParser = require('cookie-parser');
 const { v4: uuidv4 } = require('uuid');
-const fs = require('fs');
 
 const app = express();
 const port = 3000;
 
-// Создаем папку для базы данных
-const dbDir = path.join(__dirname, 'db');
-if (!fs.existsSync(dbDir)) {
-    fs.mkdirSync(dbDir, { recursive: true });
-}
+// const dbPath = path.join(__dirname, 'db', 'users.db');
+// const db = new sqlite3.Database(dbPath);
 
 // Настройка middleware
 app.use(express.urlencoded({ extended: true }));
@@ -24,89 +20,61 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, '../client/templates'));
 
-// Обновляем схему базы данных для хранения данных пользователя Telegram
+// Функция для получения подключения к базе данных
 function getDBConnection() {
-    const dbPath = path.join(__dirname, 'db', 'users.db');
-    return new Promise((resolve, reject) => {
-        const db = new sqlite3.Database(dbPath, (err) => {
-            if (err) {
-                console.error('Ошибка подключения к БД:', err.message);
-                reject(err);
-            }
-            resolve(db);
-        });
+    return new sqlite3.Database(path.join(__dirname, 'db', 'users.db'), (err) => {
+        if (err) {
+            console.error('Ошибка подключения к базе данных:', err.message);
+        }
     });
 }
 
-// Инициализация базы данных
-async function initDB() {
-    try {
-        const db = await getDBConnection();
-        await db.run(`CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id TEXT UNIQUE,
-            clicked_start BOOLEAN DEFAULT FALSE,
-            telegram_username TEXT,
-            telegram_first_name TEXT,
-            telegram_last_name TEXT
-        )`);
-        
-        await db.run(`CREATE TABLE IF NOT EXISTS wallets (
-            address TEXT PRIMARY KEY,
-            user_id TEXT,
-            balance REAL,
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(user_id) REFERENCES users(user_id)
-        )`);
-        
-        console.log('База данных инициализирована');
+// Функция для получения пользователя из БД по user_id
+function getUser(user_id, callback) {
+    const db = getDBConnection();
+    db.get("SELECT clicked_start FROM users WHERE user_id = ?", [user_id], (err, row) => {
         db.close();
-    } catch (error) {
-        console.error('Ошибка инициализации БД:', error);
-        process.exit(1);
-    }
+        callback(err, row);
+    });
+}
+
+// Функция для создания нового пользователя с clicked_start = false (0)
+function createUser(user_id, callback) {
+    const db = getDBConnection();
+    db.run("INSERT INTO users (user_id, clicked_start) VALUES (?, ?)", [user_id, 0], function(err) {
+        db.close();
+        callback(err);
+    });
+}
+
+// Функция для обновления статуса пользователя (устанавливаем clicked_start в true (1))
+function updateUser(user_id, callback) {
+    const db = getDBConnection();
+    db.run("UPDATE users SET clicked_start = ? WHERE user_id = ?", [1, user_id], function(err) {
+        db.close();
+        callback(err);
+    });
 }
 
 // Основная страница
-app.get('/', async (req, res) => {
-    try {
-        const db = await getDBConnection();
-        let user_id = req.cookies.user_id;
-        // Получаем данные из Telegram WebApp
-        const telegramInitData = req.query.tgInitData;
-        let telegramUser;
-        
-        try {
-            if (telegramInitData) {
-                const decoded = decodeURIComponent(telegramInitData);
-                const webAppData = new URLSearchParams(decoded);
-                telegramUser = JSON.parse(webAppData.get('user'));
+app.get('/', (req, res) => {
+    let user_id = req.cookies.user_id;
+    if (!user_id) {
+        // Если cookie отсутствует, создаём нового пользователя и перенаправляем на /landing
+        user_id = uuidv4();
+        createUser(user_id, (err) => {
+            if (err) return res.status(500).send("Ошибка базы данных");
+            res.cookie('user_id', user_id);
+            res.redirect('/landing');
+        });
+    } else {
+        getUser(user_id, (err, user) => {
+            if (err) return res.status(500).send("Ошибка базы данных");
+            if (user && !user.clicked_start) {
+                return res.redirect('/landing');
             }
-        } catch (error) {
-            console.error('Ошибка парсинга данных Telegram:', error);
-        }
-
-        if (!user_id) {
-            // Если cookie отсутствует, создаём нового пользователя и перенаправляем на /landing
-            user_id = uuidv4();
-            createUser(user_id, telegramUser || {}, (err) => {
-                if (err) return res.status(500).send("Ошибка базы данных");
-                res.cookie('user_id', user_id);
-                res.redirect('/landing');
-            });
-        } else {
-            getUser(user_id, (err, user) => {
-                if (err) return res.status(500).send("Ошибка базы данных");
-                if (user && !user.clicked_start) {
-                    return res.redirect('/landing');
-                }
-                // Передаем данные пользователя в шаблон
-                res.render('index', { telegramUser: telegramUser || {} });  // Шаблон index.ejs в папке templates
-            });
-        }
-    } catch (error) {
-        console.error('Ошибка при обработке запроса:', error);
-        res.status(500).send("Ошибка базы данных");
+            res.render('index');  // Шаблон index.ejs в папке templates
+        });
     }
 });
 
@@ -163,22 +131,6 @@ app.post('/api/wallet/connect', express.json(), async (req, res) => {
     }
 });
 
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({
-        error: 'Внутренняя ошибка сервера',
-        message: process.env.NODE_ENV === 'development' ? err.message : undefined
-    });
+app.listen(port, () => {
+    console.log(`Сервер запущен на http://localhost:${port}`);
 });
-
-(async () => {
-    try {
-        await initDB();
-        app.listen(port, () => {
-            console.log(`Сервер запущен на http://localhost:${port}`);
-        });
-    } catch (error) {
-        console.error('Ошибка запуска сервера:', error);
-        process.exit(1);
-    }
-})();
