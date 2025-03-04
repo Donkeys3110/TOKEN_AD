@@ -11,7 +11,8 @@
   },
   "scripts": {
     "prestart": "node src/init-db.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "build": "mkdir -p src/db"
   },
   "engines": {
     "node": ">=16.0.0"
