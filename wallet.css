@@ -101,8 +101,7 @@ body {
     font-size: 2.4vh;
 }
 .navbar {
-    box-shadow: 0 0.5vh 0.2vh #00000038;
-    border-radius: 4vh;
+    border-radius: 8vh;
     padding-top: 2vh;
     text-align: center;
     position: fixed;
@@ -115,7 +114,7 @@ body {
     display: flex; /* Добавляем flex-контейнер */
     justify-content: center; /* Центрируем элементы */
   }
-  
+    
   .nav-link {
     font-size: 2vh;
     font-weight: 620;
@@ -127,8 +126,11 @@ body {
     display: inline-block; /* Для корректной работы трансформаций */
     min-width: 60px; /* Фиксированная минимальная ширина */
     border-radius: 10vh;
+    -webkit-tap-highlight-color: transparent; /* Убирает подсветку на мобильных устройствах */
+    outline: none; /* Убирает обводку при фокусе */
+    user-select: none; /* Запрещает выделение текста */
   }
-  
+    
   .nav-link.active {
     position: relative;
     margin: -1.8vh 0vh; /* Уменьшаем боковые отступы */
@@ -136,15 +138,18 @@ body {
     transition: .3s ease-out;
     font-weight: 800;
     font-size: 3vh;
-    border-radius: 4vh;
+    border-radius: 8vh;
     height: 7.7vh;
     background-color: #ffffff;
     color: #187BC6;
+    -webkit-tap-highlight-color: transparent; /* Убирает подсветку на мобильных устройствах */
+    outline: none; /* Убирает обводку при фокусе */
+    user-select: none; /* Запрещает выделение текста */
     
   }
-  
+    
   /* Добавляем псевдоэлемент для стабильности неактивных ссылок */
-  .nav-link:not(.active) {
+.nav-link:not(.active) {
     transform: translateY(0.5vh); /* Компенсируем вертикальное смещение */
     opacity: 0.9; /* Визуально отличаем неактивные элементы */
-  }
+}
