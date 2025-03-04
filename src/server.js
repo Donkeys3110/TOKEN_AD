@@ -20,7 +20,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, '../client/templates'));
 
-// Функция для получения подключения к базе данных
+// Обновляем схему базы данных для хранения данных пользователя Telegram
 function getDBConnection() {
     return new sqlite3.Database(path.join(__dirname, 'db', 'users.db'), (err) => {
         if (err) {
@@ -38,13 +38,17 @@ function getUser(user_id, callback) {
     });
 }
 
-// Функция для создания нового пользователя с clicked_start = false (0)
-function createUser(user_id, callback) {
+// Обновляем функцию создания пользователя
+function createUser(user_id, telegramData, callback) {
     const db = getDBConnection();
-    db.run("INSERT INTO users (user_id, clicked_start) VALUES (?, ?)", [user_id, 0], function(err) {
-        db.close();
-        callback(err);
-    });
+    db.run(
+        "INSERT INTO users (user_id, clicked_start, telegram_username, telegram_first_name, telegram_last_name) VALUES (?, ?, ?, ?, ?)",
+        [user_id, 0, telegramData.username, telegramData.first_name, telegramData.last_name],
+        function(err) {
+            db.close();
+            callback(err);
+        }
+    );
 }
 
 // Функция для обновления статуса пользователя (устанавливаем clicked_start в true (1))
@@ -59,10 +63,24 @@ function updateUser(user_id, callback) {
 // Основная страница
 app.get('/', (req, res) => {
     let user_id = req.cookies.user_id;
+    // Получаем данные из Telegram WebApp
+    const telegramInitData = req.query.tgInitData;
+    let telegramUser;
+    
+    try {
+        if (telegramInitData) {
+            const decoded = decodeURIComponent(telegramInitData);
+            const webAppData = new URLSearchParams(decoded);
+            telegramUser = JSON.parse(webAppData.get('user'));
+        }
+    } catch (error) {
+        console.error('Ошибка парсинга данных Telegram:', error);
+    }
+
     if (!user_id) {
         // Если cookie отсутствует, создаём нового пользователя и перенаправляем на /landing
         user_id = uuidv4();
-        createUser(user_id, (err) => {
+        createUser(user_id, telegramUser || {}, (err) => {
             if (err) return res.status(500).send("Ошибка базы данных");
             res.cookie('user_id', user_id);
             res.redirect('/landing');
@@ -73,7 +91,8 @@ app.get('/', (req, res) => {
             if (user && !user.clicked_start) {
                 return res.redirect('/landing');
             }
-            res.render('index');  // Шаблон index.ejs в папке templates
+            // Передаем данные пользователя в шаблон
+            res.render('index', { telegramUser: telegramUser || {} });  // Шаблон index.ejs в папке templates
         });
     }
 });

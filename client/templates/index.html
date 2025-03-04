@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
+    <% if (telegramUser.username) { %>
+        <div class="user-info">
+            Привет, @<%= telegramUser.username %>!
+        </div>
+    <% } %>
     <div class="container">
         <a href="main_in.html"><div class="crate"><div class="incrate"></div></div></a>
         <div class="crate"><div class="incrate"></div></div>
