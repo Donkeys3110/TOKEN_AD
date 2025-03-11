@@ -10,22 +10,12 @@ body {
   touch-action: manipulation;
 }
 
-button {
-  outline: none;
-  border: none;
-  
-}
-button:focus {
-  outline: none;
-}
-
 .container {
   position: relative;
   width: 100%;
   text-align: center;
   color: #fff;
 }
-
 
 
 
@@ -77,9 +67,9 @@ button:focus {
   text-shadow: 0 0.2vh 0.25vh #0000007a;
   text-decoration: none;
   bottom: 7vh;
-  padding-top: 0.8vh;
   left: 20%;
   right: 20%;
+  padding-bottom: 1vh;
   text-align: center;
   max-width: 70%;
   width: 60%;
@@ -153,7 +143,7 @@ button:focus {
   transform: var(--final-transform);
   position: fixed;
   top: 20vh;
-  left: 25%;
+  left: 10%;
   right: 30%;
   animation: fallFromTop1 1.5s ease-out forwards;
 }

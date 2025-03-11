@@ -9,31 +9,19 @@ body {
     overflow-y: auto;
     
 }
-.container {
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
     position: relative;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: repeat(1, 16vh);
-    row-gap: 9vh;
-    column-gap: 6vh;
-    bottom: -10vh;
-}
-.crate {
-    justify-items: center;
-    position: relative;
-    background: #2c3e50;
-    border-radius: 2vh;
-    height: 10vh;
-    width: 10vh;
-    background: #d9d9d93b;
-    box-shadow: 0 0.5vh 0.2vh #00000038;
-}
-
-.incrate {
-    position: relative;
-    background: #d9d9d93b;
-    width: 5vh;
-    height: 5vh;
-    border-radius: 2vh;
-    box-shadow: 0 0.5vh 0.2vh #00000038;
-}
+    margin-left: 20px;
+    padding: 8px 12px; /* Добавьте отступы для фона */
+    transition: all 0.8s; /* Плавные изменения для всех свойств */
+  }
+  
+  /* Стили ТОЛЬКО для активной ссылки */
+  .navbar a.active {
+    color: black !important;
+    background-color: #ffffff;
+    border-radius: 1vh;
+    z-index: 100;
+  }

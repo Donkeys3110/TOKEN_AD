@@ -1,6 +1,6 @@
 // Инициализация TON Connect
 const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-    manifestUrl: 'https://ton-connect.github.io/demo-dapp-with-react-ui/tonconnect-manifest.json',
+    manifestUrl: 'https://silver-selective-gamefowl-831.mypinata.cloud/ipfs/bafkreibrmjf3lwghgooju2afdvip7adgw74h24ybn25qrw7kgdgkgq4v2u',
     buttonRootId: 'connect-button-root'
 });
 
